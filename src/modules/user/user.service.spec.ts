@@ -31,7 +31,7 @@ describe('UserService', () => {
   });
 
   it('创建用户', async () => {
-    const result = { name: '123', account: "1234" };
+    const result = { name: '123', account: "1234", password: "12"};
     const user = await userService.createUser(result);
     expect(user.name).toBe(result.name);
   });

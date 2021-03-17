@@ -53,7 +53,7 @@ describe('User Controller', () => {
       .post(url)
       .send(result)
       .expect(201)
-      .expect(await userService.createUser({ name: '123', account: "1234" }));
+      .expect(await userService.createUser({ name: '123', account: "1234", password: "12"  }));
   });
 
   it('user post error', () => {

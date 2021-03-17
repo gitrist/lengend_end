@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InsertResult, Repository } from 'typeorm';
 import { User } from './user.entity';
-import { CreateUserDto } from './userDto';
+import { CreateUserDto, LoginDto } from './userDto';
 
 @Injectable()
 export class UserService {
@@ -15,9 +15,8 @@ export class UserService {
   * 获取用户
   */
   async getUserList() {
-    // const userList = await this.usersRepository.find();
-    // console.log(userList)
-    return [];
+    const userList = await this.usersRepository.find();
+    return userList;
   }
 
   /**
@@ -27,6 +26,21 @@ export class UserService {
     const user = new User();
     user.name = dto.name;
     user.account = dto.account;
-    return user;
+    user.password = dto.password;
+    user.date = new Date().getTime().toString();
+    delete user.id; // 避免创建时用户传了id
+    const result = await this.usersRepository.save(user)
+    return result;
+  }
+
+  /**
+   * 用户登录
+   */
+  async login(loginDto: LoginDto): Promise<any> {
+    const user = new User();
+    user.account = loginDto.account;
+    user.password = loginDto.password;
+    const result = await this.usersRepository.find(user)
+    return result;
   }
 }

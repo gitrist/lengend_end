@@ -9,7 +9,7 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle('Swagger API')
-    .setDescription('业务API')
+    .setDescription('H5Dooring')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, options);
