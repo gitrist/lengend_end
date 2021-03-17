@@ -1,10 +1,10 @@
 export default {
   type: 'mysql',
-  host: '39.98.214.179',
+  host: 'localhost',
   port: 3306,
   username: 'root',
   password: 'root',
-  database: 'consultation',
+  database: 'dooring',
   timezone: 'UTC',
   charset: 'utf8mb4',
   synchronize: false,
